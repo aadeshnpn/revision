@@ -15,85 +15,67 @@ class linkedlist:
 
 
     def add(self, v):
-        n  = self.snode
-        while True:
-            if n.next is None:
-                n.next = node(v)
-                break
-            else:
-                n = n.next
-
-
-    def addIdx(self, v, i):
         n = self.snode
+        while n.next is not None:
+            n = n.next
+        n.next = node(v)
+
+
+    def addIdx(self, idx, v):
         j = 0
         prev = None
-        curr = None
         next = None
+        n = self.snode
         while n is not None:
-            # Add to the head
             curr = n
-            next = curr.next
-            if i == 0:
-                self.snode = node(v)
-                self.snode.next = n
-                break
-            elif i == j:
+            if j == idx:
                 temp = node(v)
                 prev.next = temp
                 temp.next = curr
-                break
+            prev = curr
             j += 1
+            n = n.next
+
+
+    def remove(self, v):
+        prev = None
+        next = None
+        n = self.snode
+        while n is not None:
+            curr = n
+            next = curr.next
+            if curr.value == v:
+                prev.next = next
             prev = curr
             n = n.next
 
 
+    def removeIdx(self, idx):
+        prev = None
+        next = None
+        n = self.snode
+        j = 0
+        while n is not None:
+            curr = n
+            next = curr.next
+            if j == idx:
+                prev.next = next
+            prev = curr
+            n = n.next
+            j += 1
+
 
     def displaylList(self):
-        if self.snode is None:
-            pass
-        else:
-            n  = self.snode
-            while n is not None:
-                print(str(n.value), end=' ')
-                n = n.next
-            print()
-
-
-    def removeVal(self, val):
-        if self.snode is None:
-            pass
-        else:
-            n = self.snode
-            curr = None
-            prev = None
-            next = None
-            while n is not None:
-                curr = n
-                next = curr.next
-                if curr.value == val:
-                    # If its a root node
-                    if prev is None:
-                        self.snode = n.next
-                        break
-                    # if curr is last node
-                    elif next is None:
-                        prev.next = None
-                        break
-                    # If any other middle node
-                    elif prev is not None and next is not None:
-                        prev.next = next
-                        break
-                else:
-                    prev = curr
-                    n = n.next
+        n = self.snode
+        while n is not None:
+            print(n.value, end=' ')
+            n = n.next
+        print()
 
 
     def reverse(self):
         n = self.snode
         prev = None
-        curr = None
-        next = None
         while n is not None:
             curr = n
             n = curr.next
@@ -102,8 +84,8 @@ class linkedlist:
             if n is not None:
                 self.snode = n
 
-def test_simple_linkedlist():
-    l1 = linkedlist(node(9))
+def test():
+    l1 = linkedlist(node(0))
     l1.add(1)
     l1.add(2)
     l1.add(3)
@@ -111,5 +93,11 @@ def test_simple_linkedlist():
     l1.displaylList()
     l1.reverse()
     l1.displaylList()
+    l1.addIdx(2,9)
+    l1.displaylList()
+    l1.remove(9)
+    l1.displaylList()
+    l1.removeIdx(2)
+    l1.displaylList()
 
-test_simple_linkedlist()
+test()
