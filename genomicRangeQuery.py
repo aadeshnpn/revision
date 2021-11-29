@@ -6,6 +6,7 @@
 #     P[2] = 0    Q[2] = 6
 
 # the function should return the values [2, 4, 1], as explained above.
+## Copyright codility.com
 
 
 def solution(S, P, Q):
