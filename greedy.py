@@ -57,3 +57,24 @@ def solution(M, A):
                 else:
                     break
     return cnt
+
+
+###O(N) solution
+def solution(M, A):
+    # write your code in Python 3.6
+    front,back,result = 0, 0, 0
+    visited = [False] * (M+1)
+
+    while back < len(A):
+        if front < len(A) and not visited[A[front]]:
+            result += front - back +1
+            visited[A[front]] = True
+            front += 1
+        else:
+            visited[A[back]] = False
+            back += 1
+
+        if result > 1000000000:
+            return 1000000000
+
+    return result
