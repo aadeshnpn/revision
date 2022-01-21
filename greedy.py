@@ -78,3 +78,58 @@ def solution(M, A):
             return 1000000000
 
     return result
+
+
+
+####CountTraiangles
+#
+# # you can write to stdout for debugging purposes, e.g.
+# print("this is a debug message")
+
+def solution(A):
+    # write your code in Python 3.6
+    sortedA = sorted(A)
+    count = 0
+    for i in range(len(A)-2):
+        k = i+2
+        for j in range(i+1, len(A)):
+            while k < len(A) and sortedA[i] + sortedA[j] > sortedA[k]:
+                k +=1
+            if k > j:
+                count += k-j-1
+    return count
+
+
+#MinAbsSumOfTwo
+
+def solution(A):
+    # write your code in Python 3.6
+    minval = 2000000001
+    for i in range(len(A)):
+        for j in range(len(A)):
+            absval = abs(A[i] + A[j])
+            if absval < minval:
+                minval = absval
+    return minval
+
+
+
+
+# you can write to stdout for debugging purposes, e.g.
+# print("this is a debug message")
+
+def solution(A):
+    # write your code in Python 3.6
+    sortedA = sorted(A)
+    result = abs(sortedA[0] + sortedA[len(A)-1])
+    end = len(A) -1
+    for i in range(len(A)):
+        current = end
+        current_result = abs(sortedA[i] + sortedA[current])
+        while current >=0 and abs(sortedA[i] + sortedA[current]) <= current_result:
+            current_result = abs(sortedA[i] + sortedA[current])
+            end = current
+            current -= 1
+        if current_result < result:
+            result = current_result
+    return result
