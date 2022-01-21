@@ -133,3 +133,49 @@ def solution(A):
         if current_result < result:
             result = current_result
     return result
+
+
+### MaxNonoverlappingSegments
+
+
+
+def solution(A, B):
+    # write your code in Python 3.6 #Working version
+    maxseg = 0
+    dictsetmax = {}
+    if len(A) <= 1:
+        return len(A)
+    else:
+        for i in range(len(A)):
+            nonover = 0
+            for j in range(i+1, len(A)):
+                if A[i] <=A[j]<= B[i]:
+                    pass
+                else:
+                    nonover += 1
+            dictsetmax[nonover] = dictsetmax.get(nonover,0) + 1
+
+        maxval = 0
+        for key,value in dictsetmax.items():
+            if value > maxval:
+                maxseg = key
+                maxval = value
+        return maxseg
+
+
+##TieRopes
+#
+# you can write to stdout for debugging purposes, e.g.
+# print("this is a debug message")
+
+def solution(K, A):
+    # write your code in Python 3.6
+    count = 0
+    length = 0
+    for rope in A:
+        length += rope
+        if length >=K:
+            count += 1
+            length = 0
+    return count
+#
