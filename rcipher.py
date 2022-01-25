@@ -163,3 +163,20 @@ def findEncryptedWord(s):
   findmiddle(R, s)
 
   return ''.join(R)
+
+
+# Change in a foreign currency
+
+def canGetExactChange(targetMoney, denominations):
+  # Write your code here
+  for i in range(len(denominations)-1, -1, -1):
+    targetMoney = targetMoney % denominations[i]
+    if targetMoney == 0:
+      return True
+  return Falsez
+
+
+
+# Tree traversal with column
+#
+# Sonitnous sequence of intergers sums up to target
