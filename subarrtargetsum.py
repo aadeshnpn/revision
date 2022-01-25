@@ -34,11 +34,12 @@ def sumtargetdict(arr, target):
 
 
 def main():
-    arr = [1,2,5,2,3,10,7]
+    # arr = [1,2,5,2,3,10,7]
+    arr = [1,-2,2,5,-2,3,10,7]
     # for i in range(1,31):
     #     print(i, sumtarget(arr, i), end=' ')
     #     print(sumtargetdict(arr, i))
-    print(sumtargetdict(arr, 14))
+    print(sumtargetdict(arr, 0))
 
 
 if __name__ == '__main__':
