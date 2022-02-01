@@ -1,3 +1,6 @@
+from tree import inorderT, preorderT
+
+
 class node:
     def __init__(self,value):
         self.value = value
@@ -28,12 +31,57 @@ def bfs(root):
             queue.append(popped.left)
         if popped.right is not None:
             queue.append(popped.right)
-    print(values)
+
+    print('BFS', values)
+
+
+def dfs(root):
+    stack = [root]
+    values = []
+
+    while len(stack) >= 1:
+        popped = stack.pop()
+        values.append(popped.value)
+        if popped.right is not None:
+            stack.append(popped.right)
+        if popped.left is not None:
+            stack.append(popped.left)
+
+    print('DFS', values)
+
+
+def preorder(root):
+    # root,left,right
+    print(root.value, end=" ")
+    if root.left is not None:
+        preorder(root.left)
+    if root.right is not None:
+        preorder(root.right)
+
+def inorder(root):
+    # left,root,right
+    if root.left is not None:
+        inorder(root.left)
+    print(root.value, end=" ")
+    if root.right is not None:
+        inorder(root.right)
+
+def postorder(root):
+    # left,right,root
+    if root.left is not None:
+        postorder(root.left)
+    if root.right is not None:
+        postorder(root.right)
+    print(root.value, end=" ")
 
 
 def main():
     root = create_tree()
     bfs(root)
+    dfs(root)
+    preorder(root); print()
+    inorder(root); print()
+    postorder(root); print()
 
 
 if __name__ == "__main__":
